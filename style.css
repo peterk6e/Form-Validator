@@ -53,3 +53,22 @@ body {
 .btn:hover {
   background: rgb(12, 134, 235);
 }
+
+.error-message {
+  margin-top: 20px;
+  background: #ffe2e2;
+  color: red;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.error {
+    border-color: rgb(255, 47, 47);
+}
+
+.success {
+    border-color: rgb(0, 189, 0);
+}
+
+
