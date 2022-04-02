@@ -3,6 +3,7 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const confirmedPassword = document.getElementById("confirm-password");
 const err = document.getElementById("error-message");
+const form = document.getElementById("form");
 
 function register() {
     
@@ -14,6 +15,7 @@ function register() {
   ) {
     err.innerText = '';
     alert("Registration successful");
+    // form.submit();
   }
 }
 // Check required fields
