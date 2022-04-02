@@ -5,19 +5,20 @@ const confirmedPassword = document.getElementById("confirm-password");
 const err = document.getElementById("error-message");
 const form = document.getElementById("form");
 
-function register() {
-    
-  if (
-    !checkRequired([userName, email, password, confirmedPassword]) &&
-    checkEmail(email) &&
-    checkName(userName) &&
-    verifyPassword(password, confirmedPassword)
-  ) {
-    err.innerText = '';
-    alert("Registration successful");
-    // form.submit();
-  }
-}
+// Event listeners
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+  
+    if (!checkRequired([userName, email, password, confirmedPassword])){
+        err.innerText=''
+        checkEmail(email);
+        checkName(userName);
+        verifyPassword(password, confirmedPassword);
+    }
+
+  });
+
+
 // Check required fields
 function checkRequired(arr) {
   let isRequired = false;
@@ -34,36 +35,36 @@ function checkRequired(arr) {
 
 // Check name
 function checkName(userName) {
-  let nameVerification = false;
+  let isVerified = false;
   const name = userName.value;
   if (name.length < 3) {
     showError(userName, "Name should be longer then 3 characters");
   } else {
     showSuccess(userName);
-    nameVerification = true;
+    isVerified = true;
   }
-  return nameVerification;
+  return isVerified;
 }
 
 // Check email is valid
 function checkEmail(email) {
-  let emailVerification = false;
+  let isVerified = false;
   const re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (re.test(email.value.trim())) {
     showSuccess(email);
-    emailVerification = true;
+    isVerified = true;
   } else {
     showError(email, "Email is not valid");
   }
-  return emailVerification;
+  return isVerified;
 }
 
 // Verify password
 const verifyPassword = (password, confirmedPassword) => {
   const pwd = password.value;
   const confPwd = confirmedPassword.value;
-  let passwordVerification = false;
+  let isVerified = false;
 
   if (pwd.length < 3) {
     showError(password, "Password should be longer then 3 characters");
@@ -74,9 +75,9 @@ const verifyPassword = (password, confirmedPassword) => {
   } else {
     showSuccess(password);
     showSuccess(confirmedPassword);
-    passwordVerification = true;
+    isVerified = true;
   }
-  return passwordVerification;
+  return isVerified;
 };
 
 // Show validated fields
